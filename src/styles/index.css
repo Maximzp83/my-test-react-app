@@ -29,11 +29,15 @@ button {
 .mainWrapper > .contentWrapper {
 	flex: 2 1 auto;
 	background-color: #12c78261;
+	padding: 15px 0;
+	
 }
 
 h1 {
 	font-size: 20px;
 	/*color: #d45612ea;*/
+	margin: 0;
+	padding: 0;
 }
 
 b { font-weight: bold; }
@@ -94,7 +98,7 @@ ul.messagesList > li {
 
 ul.messagesList .deleteButton {
 	color: red;
-	margin-right: 15px;
+	margin-left: 15px;
 	/*background-color: ;*/
 	border-radius: 50%;
 	/*border: none;*/
