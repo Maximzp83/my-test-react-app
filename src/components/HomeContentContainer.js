@@ -14,10 +14,12 @@ class HomeContentContainer extends Component {
     		inputValue: '' 
     	};
 
-    	this.handleInputChange = this.handleInputChange.bind(this);
+    	// this.handleInputChange = this.handleInputChange.bind(this);
     	// this.saveButtonClick = this.saveButtonClick.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    	this.handleDelete = this.handleDelete.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
+    	// this.handleDelete = this.handleDelete.bind(this);
+        // this.handleDelete = this.handleDelete.bind(this);
+
 
     }
 
@@ -29,14 +31,14 @@ class HomeContentContainer extends Component {
         })
     }
 
-    saveButtonClick() {
-    	// let updatedList = this.state.savedMessages.concat(this.state.message);
-    	// this.setState({savedMessages: updatedList});
-    	this.setState(prevState => ({
-				savedMessages: prevState.savedMessages.concat(this.state.message)
-    	}));
-			this.messageInput.value = '';
-    }
+   //  saveButtonClick() {
+   //  	// let updatedList = this.state.savedMessages.concat(this.state.message);
+   //  	// this.setState({savedMessages: updatedList});
+   //  	this.setState(prevState => ({
+			// 	savedMessages: prevState.savedMessages.concat(this.state.message)
+   //  	}));
+			// this.messageInput.value = '';
+   //  }
 
     handleSubmit(e) {
 
@@ -48,7 +50,8 @@ class HomeContentContainer extends Component {
 
 		const newItem = {
 			text: this.state.inputValue,
-			id: Date.now()
+			id: Date.now(),
+            complete: false,
 		}
 
 		this.setState(prevState => ({
@@ -64,7 +67,32 @@ class HomeContentContainer extends Component {
     	this.setState(prevState => ({
           // savedMessages: prevState.savedMessages.filter((message, index) => index != messageIndex )
           todos: prevState.todos.filter(todo => todo.id !== id)
-      }));
+        }));
+    }
+
+    handleCompleteChange(id) {
+    
+        // this.state.todos.forEach( todo => {
+        //     if (todo.id === id) {
+        //         todo.complete = !todo.complete;
+        //     }
+        // })
+
+        // this.forceUpdate();
+
+        // --------------
+
+        this.setState(prevState => ({
+            todos:  prevState.todos.map(todo => {
+                 if (todo.id === id) {
+                    todo.complete = !todo.complete;
+                    return todo
+                 } 
+                 return todo                                     
+            })
+        }));
+
+        // console.log(this.state)
     }
 
 
@@ -76,9 +104,11 @@ class HomeContentContainer extends Component {
                     user={this.state.user}
                     todos={this.state.todos}
                     inputValue={this.state.inputValue}
-                    handleInputChange={this.handleInputChange}
-                    handleSubmit={this.handleSubmit}
-                    handleDelete={this.handleDelete}
+                    handleInputChange={(e) => this.handleInputChange(e)}
+                    handleSubmit={(e) => this.handleSubmit(e)}
+                    handleDelete={(e) => this.handleDelete(e)}
+                    handleCompleteChange={(e) => this.handleCompleteChange(e)}
+
                 />
             </div>
         );
