@@ -1,41 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomeContent = (props) => (
 	<div className="container">
-
-		<h1>Hello from <i>{ props.user.name } { props.user.lastName }</i>!</h1>
+		<h1>Home page</h1>
 		<hr/>
 
-		<form className="inputBlock" onSubmit={(e) => props.handleSubmit(e)}>
-			<label htmlFor="message">You typed: <b>{props.inputValue}</b></label>
-			<input type="text" id="message" placeholder='input something...'
-				value={props.inputValue}
-				// ref={(input) => { this.messageInput = input; }}
-				// onChange={props.handleInputChange}/>
-				onChange={(e) => props.handleInputChange(e)} />
+		<h2><i>{ props.user.name } { props.user.lastName }</i> test React App</h2>
+		<hr/>
 
-			<button type="submit">save</button>
-		</form>
+		<p>Home page content</p>
 
-		<ul className="messagesList">
-			{props.todos.length > 0 ? <h3>Todos List:</h3> : null}
-	      {props.todos.length > 0 ? (
-	      	
-	        props.todos.map((todo, index) => (
-	          <li key={todo.id}
-		          	className={todo.complete ? "complete" : ""}>
-							<input	type="checkbox"
-								defaultChecked={todo.complete}
-								onChange={() => props.handleCompleteChange(todo.id)}
-							/>
-	            {todo.text}
-	            <button className="deleteButton" type="button"
-	            	onClick={() => props.handleDelete(todo.id)}
-	            >X</button>
-	          </li>
-	        ))
-	      ) : <h3>No todos</h3>}
-	    </ul>
+		<h4>Go to the <Link to='/todos'>Todos</Link> page</h4>
 
 	</div>
 )
