@@ -5,9 +5,9 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
 
-import HomeContentContainer from './components/HomeContentContainer';
-import AboutUsContentContainer from './components/AboutUsContentContainer';
-import TodosContentContainer from './components/TodosContentContainer';
+import HomeContentContainer from './components/home/HomeContentContainer';
+import AboutUsContentContainer from './components/about_us/AboutUsContentContainer';
+import TodosContentContainer from './components/todos/TodosContentContainer';
 
 
 // import logo from './logo.svg';
