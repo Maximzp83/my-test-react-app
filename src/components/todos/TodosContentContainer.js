@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
-import TodosContent from './TodosContent';
+import TodosForm from './TodosForm';
+import TodosList from './TodosList';
 
+
+// import { findItemBy } from '../../helpers/helperFunctions'
 // ------------
 
 class TodosContentContainer extends Component {
@@ -54,7 +57,7 @@ class TodosContentContainer extends Component {
       id: Date.now(),
       complete: false,
     }
-    console.time('submit')
+    // console.time('submit')
     // console.log(this.state.todos)
     var list = this.state.todos
     list.push(newItem)
@@ -63,16 +66,15 @@ class TodosContentContainer extends Component {
       inputValue: '' 
     });
 
-    console.timeEnd('submit')
+    // console.timeEnd('submit')
 
     /*this.setState(prevState => ({
       todos: [...prevState.todos, newItem],
       inputValue: '' 
     }));*/
-
   }
 
-  handleDelete(id) {
+  handleDelete = id => {
     // let updatedList = this.state.savedMessages.filter((message, index) => index != messageIndex );
     // this.setState({savedMessages: updatedList});     
 
@@ -82,29 +84,19 @@ class TodosContentContainer extends Component {
     }));
   }
 
-  handleCompleteChange(id) {
-
-    // this.state.todos.forEach( todo => {
-    //     if (todo.id === id) {
-    //         todo.complete = !todo.complete;
-    //     }
-    // })
-
-    // this.forceUpdate();
-
-    // --------------
+  handleCompleteChange = todoId => {
+    // console.time('check2')
 
     this.setState(prevState => ({
-      todos:  prevState.todos.map(todo => {
-        if (todo.id === id) {
+      todos: prevState.todos.map(todo => {
+        if (todo.id === todoId) {
           todo.complete = !todo.complete;
           return todo
         } 
           return todo                                     
       })
     }));
-
-    // console.log(this.state)
+    // console.timeEnd('check2')
   }
 
 
@@ -113,17 +105,25 @@ class TodosContentContainer extends Component {
 
     return (
       <div className="contentWrapper">
-        <TodosContent
-          todos={todos}
-          inputValue={inputValue}
-          handleInputChange={this.handleInputChange}
-          handleSubmit={this.handleSubmit}
-          // handleDelete={(e) => this.handleDelete(e)}
-          // handleCompleteChange={(e) => this.handleCompleteChange(e)}
+        <div className="container">
+          <h1>Todos page</h1>
+          <hr/>
 
-          // handleInputChange={(e) => this.handleInputChange(e)}
-        />
+          <TodosForm
+            inputValue={inputValue}
+            handleInputChange={this.handleInputChange}
+            handleSubmit={this.handleSubmit}
+            // handleInputChange={(e) => this.handleInputChange(e)}
+          />
+
+          <TodosList
+            todos={todos}
+            handleCompleteChange={this.handleCompleteChange}
+            handleDelete={this.handleDelete}
+          />
+        </div>
       </div>
+
     );
   }
 }
