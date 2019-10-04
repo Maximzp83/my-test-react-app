@@ -1,31 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const TodosList = ({
-	// props,
-	todos,
-	handleCompleteChange,
-	handleDelete
-}) => (
-		<ul className="messagesList">
-			{todos.length > 0 ? <h3>Todos List:</h3> : null}
-	    
-	    {todos.length ? (
-        todos.map((todo, index) => (
-          <li key={todo.id}	className={todo.complete ? "complete" : ""}>
-						<input	type="checkbox"
-							defaultChecked={todo.complete}
-							onChange={() => handleCompleteChange(todo.id)}
-						/>
-            {todo.text}
-            <button className="deleteButton" type="button"
-            	onClick={() => handleDelete(todo.id)}
-            >X</button>
-          </li>
-        ))
-      ) : <h3>No todos</h3>}
-	  </ul>
-)
+// import { connect } from "react-redux";
+// import { toggleTodo, removeTodo } from "../../redux/actions/todosActions";
+
+// import { getTodosByVisibilityFilter } from "../../redux/selectors";
+
+import Todo from "./Todo";
 
 
+/*const mapStateToProps = state => {
+  const { visibilityFilter } = state;
+  // console.log(state)
+  
+  const todos = getTodosByVisibilityFilter(state, visibilityFilter);
+  // console.log(todos)
+  return { todos };
+};*/
 
+const TodosList = ({ todos, toggleTodo, removeTodo }) => (
+  <ul className="messagesList">
+    {todos && todos.length
+      ? todos.map((todo, index) => {
+          return <Todo 
+            key={`todo-${todo.id}`}
+            toggleTodo={toggleTodo}
+            removeTodo={removeTodo}
+            todo={todo} />;
+        })
+      : <h3>No todos</h3>}
+  </ul>
+);
+
+TodosList.propTypes = {
+  toggleTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+};
 export default TodosList;	   
+// export default connect(mapStateToProps)(TodosList);
