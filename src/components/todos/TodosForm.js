@@ -27,6 +27,13 @@ class TodosForm extends Component {
 	  };
 	}
 
+	/*componentWillUpdate() {
+		console.log('componentWillUpdate')
+	}
+	componentDidUpdate() {
+		console.log('componentDidUpdate')
+	}*/
+
 	handleInputChange = e => {
 	  // console.log(value)
 	  // this.setState({message: event.target.value})

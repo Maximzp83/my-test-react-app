@@ -1,4 +1,9 @@
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from "../actions/todosActions";
+import { 
+  ADD_TODO,
+  TOGGLE_TODO,
+  REMOVE_TODO,
+  SAVE_TODO
+ } from "../actions/todosActions";
 
 const initialState = {
   // allIds: [],
@@ -26,6 +31,14 @@ export default function(state = initialState.todos, action) {
       return state.map(todo =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
+    }
+
+    case SAVE_TODO: {
+      const { id, content } = action.payload;
+      
+      return state.map(todo =>
+        todo.id === id ? { ...todo, content: content } : todo
+      )      
     }
 
     case REMOVE_TODO: {

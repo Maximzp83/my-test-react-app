@@ -38,6 +38,13 @@ class TodosContentContainer extends Component {
 
   }
 
+  /*componentWillUpdate() {
+    console.log('componentWillUpdate')
+  }
+  componentDidUpdate() {
+    console.log('componentDidUpdate')
+  }*/
+
   /*handleInputChange = inputValue => {
     // console.log(value)
     // this.setState({message: event.target.value})
@@ -113,8 +120,10 @@ class TodosContentContainer extends Component {
     const addTodo = bindActionCreators(todosActionCreators.addTodo, dispatch);
     const toggleTodo = bindActionCreators(todosActionCreators.toggleTodo, dispatch);
     const removeTodo = bindActionCreators(todosActionCreators.removeTodo, dispatch);
+    const saveTodo = bindActionCreators(todosActionCreators.saveTodo, dispatch);
 
     const { /*todos,*/ inputValue } = this.state;
+    
     return (
       <div className="contentWrapper">
         <div className="container">
@@ -133,6 +142,7 @@ class TodosContentContainer extends Component {
             todos={todos}
             toggleTodo={toggleTodo}
             removeTodo={removeTodo}
+            saveTodo={saveTodo}            
           />
             {/*todos={todos}
             handleCompleteChange={this.handleCompleteChange}

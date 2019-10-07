@@ -18,7 +18,7 @@ import Todo from "./Todo";
   return { todos };
 };*/
 
-const TodosList = ({ todos, toggleTodo, removeTodo }) => (
+const TodosList = ({ todos, toggleTodo, removeTodo, saveTodo }) => (
   <ul className="messagesList">
     {todos && todos.length
       ? todos.map((todo, index) => {
@@ -26,6 +26,7 @@ const TodosList = ({ todos, toggleTodo, removeTodo }) => (
             key={`todo-${todo.id}`}
             toggleTodo={toggleTodo}
             removeTodo={removeTodo}
+            saveTodo={saveTodo}            
             todo={todo} />;
         })
       : <h3>No todos</h3>}
@@ -35,6 +36,7 @@ const TodosList = ({ todos, toggleTodo, removeTodo }) => (
 TodosList.propTypes = {
   toggleTodo: PropTypes.func.isRequired,
   removeTodo: PropTypes.func.isRequired,
+  saveTodo: PropTypes.func.isRequired,
 };
 export default TodosList;	   
 // export default connect(mapStateToProps)(TodosList);
