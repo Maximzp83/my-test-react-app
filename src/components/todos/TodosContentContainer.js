@@ -122,7 +122,7 @@ class TodosContentContainer extends Component {
     const removeTodo = bindActionCreators(todosActionCreators.removeTodo, dispatch);
     const saveTodo = bindActionCreators(todosActionCreators.saveTodo, dispatch);
 
-    const { /*todos,*/ inputValue } = this.state;
+    // const { /*todos,*/ inputValue } = this.state;
     
     return (
       <div className="contentWrapper">
@@ -132,7 +132,7 @@ class TodosContentContainer extends Component {
           <FilterBar />
 
           <TodosForm
-            inputValue={inputValue}
+            // inputValue={inputValue}
             // handleInputChange={this.handleInputChange}
             addTodo={addTodo}
             // handleInputChange={(e) => this.handleInputChange(e)}
