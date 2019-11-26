@@ -18,10 +18,26 @@ export default function(state = initialState.todos, action) {
     case ADD_TODO: {
       // console.log(state)
       const { id, content } = action.payload;
-      const newTodosList = [
+      console.time('1')
+      let newTodosList2 = [
         ...state,
         {id: id, content: content, completed:false}  
-      ] 
+      ]
+      console.timeEnd('1')
+      // console.log(state)
+      console.time('2')
+      let newTodosList = [];
+      for (var i = 0; i < state.length; i++) {
+        newTodosList.push(state[i])
+      }
+
+      newTodosList.push({id: id, content: content, completed:false})
+      console.timeEnd('2')
+
+      // console.log(newTodosList)
+      // newTodosList.push({id: id, content: content, completed:false})
+      // console.log(newTodosList)
+
       // console.log(newTodosList)
       return newTodosList
     }
